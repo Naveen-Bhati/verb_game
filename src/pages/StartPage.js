@@ -17,6 +17,7 @@ position: absolute;
 top: 50%;
 left: 36%;
 margin: auto;
+background-color: green;
 
 `
 

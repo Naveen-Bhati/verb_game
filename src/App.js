@@ -4,6 +4,7 @@ import GlobalStyle, { Container } from './GlobalStyle';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import StartPage from './pages/StartPage';
 import LevelPage from './pages/LevelPage';
+import EasyLevelPage from './pages/EasyLevelPage';
 
 
 const GameTitle = styled.h1`
@@ -32,6 +33,7 @@ function App() {
             <Routes>
               <Route path='/' element={<StartPage />}></Route>
               <Route path='/level' element={<LevelPage />}></Route>
+              <Route path='/easy' element={<EasyLevelPage />}></Route>
             </Routes>
           </Container>
         </Router>

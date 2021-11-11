@@ -1,25 +1,31 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { GlobalButton } from '../GlobalStyle'
+import { GlobalButton, Question } from '../GlobalStyle'
 
 const Level = styled.div`
+text-align: center;
+padding-top: 70px;
+`
+export const LevelDiv = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
-height: 100%;
-position: relative;
-left: 0;
-padding-left: 40%;
+
 `
 
 const LevelPage = () => {
     return (
         <Level>
-            <GlobalButton>Easy</GlobalButton>
-            <br />
-            <GlobalButton>Medium</GlobalButton>
-            <br />
-            <GlobalButton>Hard</GlobalButton>
+            <Question> Please Choose Your Difficulty Level </Question>
+            <br /><br /><br />
+            <LevelDiv>
+                <Link to='/easy'><GlobalButton>Easy</GlobalButton></Link>
+                <br />
+                <Link to='/medium'><GlobalButton>Medium</GlobalButton></Link>
+                <br />
+                <Link to='/hard'><GlobalButton>Hard</GlobalButton></Link>
+            </LevelDiv>
         </Level>
     )
 }

@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
     font-size: 10px;
     font-family: 'Mochiy Pop P One', sans-serif;
     background-color: #70DB9D;
+    color: white;
   }
   ul,li{
     list-style: none;
@@ -104,7 +105,9 @@ padding: 15px 15px;
 width: 100%;
 border-radius: 10px;
 outline: #70DB9D;
+`
 
+export const Question = styled.h1`
 
 `
 

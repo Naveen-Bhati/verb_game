@@ -66,7 +66,7 @@ const GlobalStyles = createGlobalStyle`
 
 
 export const ContainerStyle = styled.div`
-height: 510px;
+height: 550px;
 width: 800px;
 background-color: #12A869;
 border: 3px white solid;
@@ -108,7 +108,7 @@ outline: #70DB9D;
 `
 
 export const Question = styled.h1`
-
+text-align: center;
 `
 
 export default GlobalStyles;

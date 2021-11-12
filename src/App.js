@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import StartPage from './pages/StartPage';
 import LevelPage from './pages/LevelPage';
 import EasyLevelPage from './pages/EasyLevelPage';
+import MediumLevelPage from './pages/MediumLevelPage';
+import HardLevelPage from './pages/HardLevelPage'
 
 
 const GameTitle = styled.h1`
@@ -34,6 +36,8 @@ function App() {
               <Route path='/' element={<StartPage />}></Route>
               <Route path='/level' element={<LevelPage />}></Route>
               <Route path='/easy' element={<EasyLevelPage />}></Route>
+              <Route path='/medium' element={<MediumLevelPage />}></Route>
+              <Route path='/hard' element={<HardLevelPage />}></Route>
             </Routes>
           </Container>
         </Router>

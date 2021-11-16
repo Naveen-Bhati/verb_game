@@ -37,8 +37,27 @@ const EasyLevelPage = () => {
     const opt1 = k[Math.floor(Math.random() * 318)]
     const opt2 = k[Math.floor(Math.random() * 318)]
     const opt3 = k[Math.floor(Math.random() * 318)]
-    const opt4 = k[Math.floor(Math.random() * 318)]
 
+    const randomArr = [opt1, opt2, opt3, ans]
+
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+
+        } return array
+    };
+    const finArr = shuffleArray(randomArr)
+
+    const checkAnsHandler = (e) => {
+        if (e.target.value === ans) {
+            alert("answer is correct")
+        } else {
+            alert("incorrect answer")
+        }
+    }
 
 
     return (
@@ -47,13 +66,13 @@ const EasyLevelPage = () => {
             <br /><br />
             <MCQdiv>
                 <MCQinner>
-                    <Link to='/' ><GlobalButton width='350px'>{opt1} </GlobalButton></Link>
-                    <GlobalButton width='350px'>{opt2} </GlobalButton>
+                    <GlobalButton value={finArr[0]} onClick={e => checkAnsHandler(e, "value")} width='350px'>{finArr[0]} </GlobalButton>
+                    <GlobalButton value={finArr[1]} onClick={e => checkAnsHandler(e, "value")} width='350px'>{finArr[1]} </GlobalButton>
                 </MCQinner>
                 <br />
                 <MCQinner>
-                    <GlobalButton width='350px'>{opt3}</GlobalButton>
-                    <GlobalButton width='350px'>{opt4}</GlobalButton>
+                    <GlobalButton value={finArr[2]} onClick={e => checkAnsHandler(e, "value")} width='350px'>{finArr[2]}</GlobalButton>
+                    <GlobalButton value={finArr[3]} onClick={e => checkAnsHandler(e, "value")} width='350px'>{finArr[3]}</GlobalButton>
                 </MCQinner>
             </MCQdiv>
         </HOCMain>

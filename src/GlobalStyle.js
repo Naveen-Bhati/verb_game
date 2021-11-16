@@ -191,9 +191,9 @@ export const CompleteAnsComponent = ({ firstform, secondform, thirdform, level }
 
   const checkVerbHandler = () => {
     if (SF === secondform && FF === firstform && TF === thirdform) {
-      console.log("Answer is Correct");
+      alert("Answer is Correct");
     } else {
-      console.log("Incorrect Answer");
+      alert("Incorrect Answer");
     }
   }
 
@@ -204,17 +204,17 @@ export const CompleteAnsComponent = ({ firstform, secondform, thirdform, level }
       <br /><br />
       <InputAnsDiv>
         <h1>I FORM</h1>
-        <input type="text" value={FF} disabled={disableFF} onChange={(e) => setFF(e.target.value)} />
+        <input type="text" value={FF} disabled={disableFF} onChange={(e) => setFF((e.target.value).toLowerCase().replace(/\s/g, ""))} />
       </InputAnsDiv>
       <br />
       <InputAnsDiv>
         <h1>II FORM</h1>
-        <input type="text" value={SF} disabled={disableSF} onChange={(e) => setSF(e.target.value)} />
+        <input type="text" value={SF} disabled={disableSF} onChange={(e) => setSF((e.target.value).toLowerCase().replace(/\s/g, ""))} />
       </InputAnsDiv>
       <br />
       <InputAnsDiv>
         <h1>III FORM</h1>
-        <input type="text" value={TF} disabled={disableTF} onChange={(e) => setTF(e.target.value)} />
+        <input type="text" value={TF} disabled={disableTF} onChange={(e) => setTF((e.target.value).toLowerCase().replace(/\s/g, ""))} />
       </InputAnsDiv>
       <br /><br />
       <ResetButtonDiv><GlobalButton onClick={checkVerbHandler} width='100px' > {`>`} </GlobalButton></ResetButtonDiv>

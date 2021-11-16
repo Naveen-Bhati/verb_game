@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GlobalButton, GlobalInput } from '../GlobalStyle'
@@ -22,9 +22,10 @@ background-color: green;
 `
 
 const StartPage = () => {
+    const [playerName, setPlayerName] = useState('')
     return (
         <Start>
-            <GlobalInput placeholder="Enter your name" />
+            <GlobalInput placeholder="Enter your name" onChange={(e) => setPlayerName(e.target.value)} />
             <ButtonDiv><Link to='/level'><GlobalButton > Start </GlobalButton></Link></ButtonDiv>
         </Start>
     )

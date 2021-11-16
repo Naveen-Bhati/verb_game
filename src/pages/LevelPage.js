@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GlobalButton, Question } from '../GlobalStyle'
@@ -14,17 +14,19 @@ justify-content: center;
 
 `
 
-const LevelPage = () => {
+
+const LevelPage = ({ playerName }) => {
+    const [lessonNo, setLessonNo] = useState(1)
     return (
         <Level>
-            <Question> Please Choose Your Difficulty Level </Question>
+            <Question> Please Choose Your Difficulty Level {playerName}</Question>
             <br /><br /><br />
             <LevelDiv>
-                <Link to='/easy'><GlobalButton>Easy</GlobalButton></Link>
+                <Link to={`/easy/:${lessonNo}`}><GlobalButton>Easy</GlobalButton></Link>
                 <br />
-                <Link to='/medium'><GlobalButton>Medium</GlobalButton></Link>
+                <Link to={`/medium/:${lessonNo}`}><GlobalButton>Medium</GlobalButton></Link>
                 <br />
-                <Link to='/hard'><GlobalButton>Hard</GlobalButton></Link>
+                <Link to={`/hard/:${lessonNo}`}><GlobalButton>Hard</GlobalButton></Link>
             </LevelDiv>
         </Level>
     )

@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
+import { ResetButtonDiv } from './hoc/HOCMain';
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -35,6 +38,11 @@ const GlobalStyles = createGlobalStyle`
   button{
     outline: none
   }
+  input{
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bolder;
+  }
   
   
 /* Smooth Scroll  */
@@ -64,10 +72,22 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-
+export const GameTitle = styled.nav`
+color: var(--white);
+font-size: 3rem;
+letter-spacing: 3px;
+word-spacing: 10px;
+background-color: #12A869;
+height: 12vh;
+width: 100vw;
+display: flex;
+align-items: center;
+justify-content: center;
+`
 export const ContainerStyle = styled.div`
-height: 550px;
-width: 800px;
+height: 84vh;
+width: 70vw;
+min-width: 500px;
 background-color: #12A869;
 border: 3px white solid;
 position: absolute;
@@ -85,6 +105,7 @@ export const Container = (props) => {
     <ContainerStyle>{props.children}</ContainerStyle>
   )
 }
+
 
 export const GlobalButton = styled.button`
 width: ${(props) => props.width ? props.width : '140px'};
@@ -110,5 +131,97 @@ outline: #70DB9D;
 export const Question = styled.h1`
 text-align: center;
 `
+export const CompleteAnswer = styled.div``
+export const InputAnsDiv = styled.div`
+display: flex;
+justify-content:space-around;
+align-items: center;
+padding:0 10%;
+
+input{
+    padding: 10px 20px;
+    width: 350px;
+    border-radius: 50px;
+    background-color: #70DB9D;
+    border: 2px solid white;
+    box-sizing: border-box;
+    :disabled{
+      box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+      cursor: not-allowed;
+    }
+}
+@media only screen and (max-width: 1000px) {
+  padding:0 20px;
+  input{
+    width: 250px;
+}
+}
+`
+
+export const CompleteAnsComponent = ({ firstform, secondform, thirdform, level }) => {
+  const [FF, setFF] = useState('')
+  const [SF, setSF] = useState('')
+  const [TF, setTF] = useState('')
+  const [disableFF, setDisableFF] = useState(false)
+  const [disableSF, setDisableSF] = useState(false)
+  const [disableTF, setDisableTF] = useState(false)
+
+
+  useEffect(() => {
+    const randomForm = Math.ceil(Math.random() * 3)
+    if (level === 'medium') {
+      setFF(firstform)
+      setDisableFF(true)
+    } else {
+      if (randomForm === 2) {
+        setSF(secondform)
+        setDisableSF(true)
+      }
+      else if (randomForm === 1) {
+        setFF(firstform)
+        setDisableFF(true)
+      }
+      else {
+        setTF(thirdform)
+        setDisableTF(true)
+      }
+
+    }
+  }, [level, firstform, secondform, thirdform])
+
+  const checkVerbHandler = () => {
+    if (SF === secondform && FF === firstform && TF === thirdform) {
+      console.log("Answer is Correct");
+    } else {
+      console.log("Incorrect Answer");
+    }
+  }
+
+
+  return (
+    <CompleteAnswer>
+      <Question>Complete the remaining forms of the verb</Question>
+      <br /><br />
+      <InputAnsDiv>
+        <h1>I FORM</h1>
+        <input type="text" value={FF} disabled={disableFF} onChange={(e) => setFF(e.target.value)} />
+      </InputAnsDiv>
+      <br />
+      <InputAnsDiv>
+        <h1>II FORM</h1>
+        <input type="text" value={SF} disabled={disableSF} onChange={(e) => setSF(e.target.value)} />
+      </InputAnsDiv>
+      <br />
+      <InputAnsDiv>
+        <h1>III FORM</h1>
+        <input type="text" value={TF} disabled={disableTF} onChange={(e) => setTF(e.target.value)} />
+      </InputAnsDiv>
+      <br /><br />
+      <ResetButtonDiv><GlobalButton onClick={checkVerbHandler} width='100px' > {`>`} </GlobalButton></ResetButtonDiv>
+    </CompleteAnswer>
+  )
+}
+
+
 
 export default GlobalStyles;

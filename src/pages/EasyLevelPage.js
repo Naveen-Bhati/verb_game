@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GlobalButton, Question } from '../GlobalStyle'
 import HOCMain from '../hoc/HOCMain'
@@ -29,7 +28,7 @@ const EasyLevelPage = () => {
     const rand = Math.floor(Math.random() * (verb_data.length))
     const [easy, setEasy] = useState(verb_data[rand][0])
     console.log(easy, rand);
-    const whichForm = Math.ceil(Math.random() * 3)
+    const whichForm = Math.ceil(Math.random() * 2) + 1
     const ans = verb_data[rand][whichForm - 1]
     console.log(ans, rand, whichForm);
 

@@ -6,6 +6,7 @@ import LevelPage from './pages/LevelPage';
 import EasyLevelPage from './pages/EasyLevelPage';
 import MediumLevelPage from './pages/MediumLevelPage';
 import HardLevelPage from './pages/HardLevelPage'
+import LessonPage from './pages/LessonPage';
 
 
 
@@ -24,9 +25,13 @@ function App() {
             <Routes>
               <Route path='/' element={<StartPage />}></Route>
               <Route path='/level' element={<LevelPage />}></Route>
-              <Route path='/easy/:lesson' element={<EasyLevelPage />}></Route>
-              <Route path='/medium/:lesson' element={<MediumLevelPage />}></Route>
-              <Route path='/hard/:lesson' element={<HardLevelPage />}></Route>
+              <Route path='/easy/lesson' element={<EasyLevelPage />}></Route>
+              <Route path='/medium/lesson' element={<MediumLevelPage />}></Route>
+              <Route path='/hard/lesson' element={<HardLevelPage />}></Route>
+              <Route path='/easy/lessonpage' element={<LessonPage />}></Route>
+              <Route path='/medium/lessonpage' element={<LessonPage />}></Route>
+              <Route path='/hard/lessonpage' element={<LessonPage />}></Route>
+
             </Routes>
           </Container>
         </Router>

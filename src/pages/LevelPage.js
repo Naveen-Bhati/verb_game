@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GlobalButton, Question } from '../GlobalStyle'
+import { ResetButtonDiv } from '../hoc/HOCMain'
 
-const Level = styled.div`
+export const Level = styled.div`
 text-align: center;
 padding-top: 70px;
 `
@@ -14,20 +15,21 @@ justify-content: center;
 
 `
 
-
-const LevelPage = ({ playerName }) => {
-    const [lessonNo, setLessonNo] = useState(1)
+const LevelPage = () => {
+    const [playerName, setPlayerName] = useState(JSON.parse(localStorage.getItem('playerName')))
     return (
         <Level>
-            <Question> Please Choose Your Difficulty Level {playerName}</Question>
+            <Question>Hi {playerName}, Please Choose Your Difficulty Level </Question>
             <br /><br /><br />
             <LevelDiv>
-                <Link to={`/easy/:${lessonNo}`}><GlobalButton>Easy</GlobalButton></Link>
+                <Link to={`/easy/lessonpage`}><GlobalButton>Easy</GlobalButton></Link>
                 <br />
-                <Link to={`/medium/:${lessonNo}`}><GlobalButton>Medium</GlobalButton></Link>
+                <Link to={`/medium/lessonpage`}><GlobalButton>Medium</GlobalButton></Link>
                 <br />
-                <Link to={`/hard/:${lessonNo}`}><GlobalButton>Hard</GlobalButton></Link>
+                <Link to={`/hard/lessonpage`}><GlobalButton>Hard</GlobalButton></Link>
             </LevelDiv>
+            <br /><br /><br /><br />
+            <ResetButtonDiv><Link to='/'><GlobalButton width='250px' > Go Back </GlobalButton></Link></ResetButtonDiv>
         </Level>
     )
 }

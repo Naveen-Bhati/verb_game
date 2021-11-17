@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GlobalButton } from '../GlobalStyle'
+
 
 
 
@@ -21,6 +22,8 @@ height: 5vh;
 
 
 export const LessonBar = ({ playerName, totalXP, lessonNo }) => {
+
+
     return (
         <LessonBarDiv>
             <h1>{playerName}</h1>
@@ -53,9 +56,14 @@ justify-content: space-between;
 
 export const HOCMain = ({ children }) => {
 
-    const [playerName, setPlayerName] = useState('Naveen Bhati')
+
+
+
+
+    const [playerName, setPlayerName] = useState(JSON.parse(localStorage.getItem('playerName')))
     const [totalXP, setTotalXP] = useState(0)
-    const [lessonNo, setLessonNo] = useState(1)
+    const [lessonNo, setLessonNo] = useState(JSON.parse(localStorage.getItem('lessonNo')))
+
 
     return (
         <HOCmainContainer>

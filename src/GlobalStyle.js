@@ -42,6 +42,7 @@ const GlobalStyles = createGlobalStyle`
     color: white;
     font-size: 2.5rem;
     font-weight: bolder;
+    background-color: #70DB9D;
   }
   
   
@@ -120,12 +121,17 @@ cursor: pointer;
  :hover{
   transform: scale(1.1);
 }
+:disabled{
+      box-shadow: inset 0 0 0 1000px rgba(0,0,0,.2);
+      cursor: not-allowed;
+    }
 `
 export const GlobalInput = styled.input`
 padding: 15px 15px;
 width: 100%;
 border-radius: 10px;
 outline: #70DB9D;
+border: 2px solid white;
 `
 
 export const Question = styled.h1`

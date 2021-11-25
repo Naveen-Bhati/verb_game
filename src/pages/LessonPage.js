@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { GlobalButton, Question } from '../GlobalStyle'
 import { ResetButtonDiv } from '../hoc/HOCMain'
 import { useLocation } from 'react-router'
+import { useSelector } from 'react-redux'
 
 
 
@@ -23,7 +24,11 @@ justify-content: center;
 
 
 const LessonPage = () => {
-    const [playerName, setPlayerName] = useState(JSON.parse(localStorage.getItem('playerName')))
+    const [playerName] = useState(JSON.parse(localStorage.getItem('playerName')))
+
+    const { lessonNo, comletedLesson } = useSelector(state => state.lessonreducer)
+
+
     const chooseLessonHandler = (e) => {
         localStorage.setItem('lessonNo', JSON.stringify(e.target.value))
     }
@@ -37,7 +42,9 @@ const LessonPage = () => {
         } else {
             setLevelName('hard')
         }
-    })
+    }, [location.pathname])
+
+
 
     return (
 
@@ -46,15 +53,16 @@ const LessonPage = () => {
             <Question>Hi {playerName}, Please Choose Your Lesson </Question>
             <br /><br />
             <LessonDiv>
-                <Link to={`/${levelName}/lesson?l=1&q=1`}><GlobalButton value={1} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {1} </GlobalButton></Link><br />
-                <Link to={`/${levelName}/lesson?l=2&q=1`}><GlobalButton value={2} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {2} </GlobalButton></Link><br />
-                <Link to={`/${levelName}/lesson?l=3&q=1`}><GlobalButton value={3} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {3} </GlobalButton></Link><br />
-                <Link to={`/${levelName}/lesson?l=4&q=1`}><GlobalButton value={4} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {4}</GlobalButton></Link><br />
-                <Link to={`/${levelName}/lesson?l=5&q=1`}><GlobalButton value={5} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {5}</GlobalButton></Link>
+                <Link to={`/${levelName}/:1`}><GlobalButton disabled={lessonNo !== 1} value={1} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {1} </GlobalButton></Link><br />
+                <Link to={`/${levelName}/:2`}><GlobalButton disabled={lessonNo !== 2} value={2} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {2} </GlobalButton></Link><br />
+                <Link to={`/${levelName}/:3`}><GlobalButton disabled={lessonNo !== 3} value={3} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {3} </GlobalButton></Link><br />
+                <Link to={`/${levelName}/:4`}><GlobalButton disabled={lessonNo !== 4} value={4} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {4}</GlobalButton></Link><br />
+                <Link to={`/${levelName}/:5`}><GlobalButton disabled={lessonNo !== 5} value={5} onClick={e => chooseLessonHandler(e, "value")} width='350px'>Lesson {5}</GlobalButton></Link>
             </LessonDiv>
             <br /><br />
             <ResetButtonDiv><Link to='/level'><GlobalButton width='250px' > Go Back </GlobalButton></Link></ResetButtonDiv>
         </Lesson>
+
     )
 }
 

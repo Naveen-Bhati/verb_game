@@ -1,7 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GlobalButton } from '../GlobalStyle'
+
 
 
 
@@ -21,14 +23,14 @@ height: 5vh;
 `
 
 
-export const LessonBar = ({ playerName, totalXP, lessonNo }) => {
+export const LessonBar = ({ playerName, lessonNo }) => {
 
-
+    const { totalXP } = useSelector(state => state.totalXPreducer)
     return (
         <LessonBarDiv>
             <h1>{playerName}</h1>
             <h1>Lesson {lessonNo}</h1>
-            <h1>Total XP : {totalXP}</h1>
+            <h1>Total XP : {totalXP ? totalXP : 0}</h1>
         </LessonBarDiv>
     )
 }
@@ -56,24 +58,19 @@ justify-content: space-between;
 
 export const HOCMain = ({ children }) => {
 
-
-
-
-
-    const [playerName, setPlayerName] = useState(JSON.parse(localStorage.getItem('playerName')))
-    const [totalXP, setTotalXP] = useState(0)
-    const [lessonNo, setLessonNo] = useState(JSON.parse(localStorage.getItem('lessonNo')))
-
+    const [playerName] = useState(JSON.parse(localStorage.getItem('playerName')))
+    const { lessonNo } = useSelector(state => state.lessonreducer)
+    const { correctQ } = useSelector(state => state.totalXPreducer)
 
     return (
         <HOCmainContainer>
-            <LessonBar playerName={playerName} totalXP={totalXP} lessonNo={lessonNo} />
+            <LessonBar playerName={playerName} lessonNo={lessonNo} />
             <MainQuestionContainer>
                 {children}
             </MainQuestionContainer>
             <LowerDiv>
                 <TotalCorrect>
-                    Correct / Total : 0 / 1
+                    Correct / Total : {correctQ} / 10
                 </TotalCorrect>
                 <ResetButtonDiv><Link to='/level'><GlobalButton width='250px' > Start Again </GlobalButton></Link></ResetButtonDiv>
             </LowerDiv>

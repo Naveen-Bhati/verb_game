@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { GlobalButton, Question } from '../GlobalStyle'
@@ -16,17 +17,18 @@ justify-content: center;
 `
 
 const LevelPage = () => {
-    const [playerName, setPlayerName] = useState(JSON.parse(localStorage.getItem('playerName')))
+    const [playerName] = useState(JSON.parse(localStorage.getItem('playerName')))
+    const { totalXP } = useSelector(state => state.totalXPreducer)
     return (
         <Level>
             <Question>Hi {playerName}, Please Choose Your Difficulty Level </Question>
             <br /><br /><br />
             <LevelDiv>
-                <Link to={`/easy/lessonpage`}><GlobalButton>Easy</GlobalButton></Link>
+                <Link to={`/easy/:lesson`}><GlobalButton disabled={!(totalXP >= 0)}>Easy</GlobalButton></Link>
                 <br />
-                <Link to={`/medium/lessonpage`}><GlobalButton>Medium</GlobalButton></Link>
+                <Link to={`/medium/:lesson`}><GlobalButton disabled={!(totalXP >= 1000)}>Medium</GlobalButton></Link>
                 <br />
-                <Link to={`/hard/lessonpage`}><GlobalButton>Hard</GlobalButton></Link>
+                <Link to={`/hard/:lesson`}><GlobalButton disabled={!(totalXP >= 5000)}>Hard</GlobalButton></Link>
             </LevelDiv>
             <br /><br /><br /><br />
             <ResetButtonDiv><Link to='/'><GlobalButton width='250px' > Go Back </GlobalButton></Link></ResetButtonDiv>
